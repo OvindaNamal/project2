@@ -289,11 +289,9 @@ console.log(dis);
                     <tr style="border-bottom: 4px solid black;"><td><h6>Balance</h6></td><td><input type="text" name="balance" id="balance" class="form-control" readonly></td></tr>
                 </table>
 
-                
                 <center>
                     <td><input class="btn btn-success" type="submit" name="saveData" id="saveData" value="Save Data"></td>
                 </center>
-            
         </form>
 
         <a href="{{route('placingOrder.view')}}"><button class="btn btn-info">View Orders</button></a>
