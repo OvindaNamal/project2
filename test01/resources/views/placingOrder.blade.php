@@ -70,7 +70,7 @@
 
             var dis = amount *(selectedDiscount/100);
             $(this).closest('tr').find('.discount').val(dis);
-console.log(dis);
+//console.log(dis);
 // Update net_Amount and discount for all rows
             updateNetAmount();
             updateDiscount();
@@ -272,6 +272,7 @@ console.log(dis);
                             <th>Free quantity</th>
                             <th>Discount (Rs.)</th>
                             <th>Amount</th>
+                            <th>Action</th>
                             <th></th>
                         </tr>
                     </thead>
