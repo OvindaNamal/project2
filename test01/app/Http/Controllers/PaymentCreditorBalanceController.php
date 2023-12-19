@@ -31,10 +31,14 @@ class PaymentCreditorBalanceController extends Controller
     public function displayCustomerBalances()
     {
         try {
-            $customerBalances = PlacingOrder::select('customer_name', DB::raw('SUM(subquery.balance) as total_balance'), DB::raw('SUM(subquery.net_Amount) as total_net_amount'))
-                ->from(DB::raw('(SELECT DISTINCT order_NO, customer_name, balance, net_Amount FROM placing_orders) as subquery'))
-                ->groupBy('customer_name')
-                ->get();
+            $customerBalances = PlacingOrder::select('customer_name', 
+                DB::raw('SUM(subquery.balance) as total_balance'), 
+                DB::raw('SUM(subquery.tot_discount) as total_discount'), 
+                DB::raw('SUM(subquery.tot_Amount) as total_amount'), 
+                DB::raw('SUM(subquery.net_Amount) as total_net_amount'))
+                    ->from(DB::raw('(SELECT DISTINCT order_NO, customer_name, balance, net_Amount , tot_discount, tot_Amount FROM placing_orders) as subquery'))
+                    ->groupBy('customer_name')
+                    ->get();
     
             return view('creditorBalance', ['customerBalances' => $customerBalances ?? []]);
         } catch (\Exception $e) {

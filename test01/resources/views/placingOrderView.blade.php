@@ -72,8 +72,8 @@
                         <th>Order No</th>
                         <th>Customer Name</th>
                         <th>Order Date</th>
-                        <th>Order Time</th>
-                        <th>Net Amount</th>
+                        <th>Last Paid</th>
+                        <th>Total Amount</th>
                         <th>Balance</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -86,9 +86,9 @@
                         </td>
                         <td>{{$task->order_No}}</td>
                         <td>{{$task->customer_name}}</td> 
-                        <td>{{ \Carbon\Carbon::parse($task->created_at)->timezone('Asia/Colombo')->format('Y-m-d ') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($task->created_at)->timezone('Asia/Colombo')->format('H:i:s') }}</td>
-                        <td>{{$task->net_Amount}}</td>
+                        <td>{{ \Carbon\Carbon::parse($task->created_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($task->updated_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td>
+                        <td>{{$task->tot_Amount}}</td>
                         <td>{{$task->balance}}</td>
 
                         <td><a href="{{ route('placingOrders.view', $task->order_No) }}" style="color: rgb(34, 0, 255);"><b>View</b></a></td>

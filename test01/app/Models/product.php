@@ -12,6 +12,7 @@ class product extends Model
         'productName',
         'product_code',
         'productPrice',
+        'discount',
         'expiryDate'
     ];
 }

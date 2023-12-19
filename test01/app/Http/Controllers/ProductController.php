@@ -65,6 +65,7 @@ class ProductController extends Controller
             'productName' => 'required|string|max:255',
             'product_code' => 'required|string|max:255',
             'productPrice' => 'required|numeric',
+            'discount' => 'required|numeric',
             'expiryDate' => 'required|date',
         ]);
 
@@ -73,6 +74,7 @@ class ProductController extends Controller
             'productName' => $request->input('productName'),
             'product_code' => $request->input('product_code'),
             'productPrice' => $request->input('productPrice'),
+            'discount' => $request->input('discount'),
             'expiryDate' => $request->input('expiryDate'),
         ]);
 

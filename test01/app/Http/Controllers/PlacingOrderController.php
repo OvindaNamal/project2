@@ -73,8 +73,11 @@ class PlacingOrderController extends Controller
             $product_price = $data['product_price'];
             $quantity = $data['quantity'];
             $free =$data['free'];
+            $discount =$data['discount'];
             $amount =$data['amount'];
             $net_Amount = $data['net_Amount'];
+            $tot_discount = $data['tot_discount'];
+            $tot_Amount = $data['tot_Amount'];
             $pay = $data['pay'];
             $balance = $data['balance'];
     
@@ -93,8 +96,11 @@ class PlacingOrderController extends Controller
                         $order_add->product_price = $product_price[$key];
                         $order_add->quantity = $qty;
                         $order_add->free = $free[$key];
+                        $order_add->discount = $discount[$key];
                         $order_add->amount = $amount[$key];
                         $order_add->net_Amount = $net_Amount;
+                        $order_add->tot_discount = $tot_discount;
+                        $order_add->tot_Amount = $tot_Amount;
                         $order_add->pay = $pay;
                         $order_add->balance = $balance;
     
@@ -104,7 +110,7 @@ class PlacingOrderController extends Controller
                     // Log or handle missing keys (optional)
                 }
             }
-    // return $request;
+    //return $request;
             return redirect()->back()->with('success', 'Order placed successfully.');
         } catch (\Exception $e) {
             // Log the error or handle it as needed

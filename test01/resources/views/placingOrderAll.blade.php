@@ -9,10 +9,13 @@
     <style>
 
         tr:nth-child(even) {
-          background-color: rgba(212, 212, 246, 0.4);
+          background-color: rgba(150, 212, 212, 0.4);
         }
-
-    </style>   
+        
+        th:nth-child(even),td:nth-child(even) {
+          background-color: rgba(150, 212, 212, 0.168);
+        }
+    </style>      
 </head>
 <body class="container">
     <a href="/"><button class="btn btn-success">Home page</button></a><br>
@@ -30,8 +33,9 @@
                     <th>Product Name</th>
                     <th>Product Price</th>
                     <th>Quantity</th>
-                    <th>Amount</th>
-                    <th>Balance</th>
+                    <th>Sub Tot. Amount</th>
+                    <th>Discount (Rs.)</th>
+                    <th>Total Amount</th>
                     <th>Action</th>
                     
                 </tr>
@@ -45,7 +49,8 @@
                         <td>{{ $order->product_price }}</td>
                         <td>{{ $order->quantity }}</td>
                         <td>{{ $order->amount }}</td>
-                        <td>{{ $order->balance }}</td>
+                        <td>{{ $order->discount }}</td>
+                        <td>{{ $order->amount - $order->discount }}</td>
                         <td>
                             <form action="{{ route('deleteOrder', ['id' => $order->id]) }}" method="POST">
                                 @csrf

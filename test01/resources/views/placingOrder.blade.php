@@ -29,23 +29,29 @@
 
 
         let dynamicTableCounter = 1;
-        var net_Amount = 0;
-        var balance=0;
+        var tot_Amount = 0;
+        var tot_discount = 0;
+        var net_Amount = 0; // mean sub total amount
+        var balance = 0;
         var namee;
         var selectedCode;
-        var multyFree; //multiple free issues
+        var selectedDiscount;
+        var multyFree;
 
         // Event listener for changes in the product select
         $(document).on('change', '.product-select', function () {
             var selectedOption = $(this).find(':selected');
             var selectedPrice = selectedOption.data('price');
             selectedCode = selectedOption.data('code');
+            selectedDiscount = selectedOption.data('discount'); 
             namee = selectedOption.data('name');
             
             // Find the closest row and update the related fields
             var row = $(this).closest('tr');
             row.find('.product-code').val(selectedCode);
             row.find('.product-price').val(selectedPrice);
+            //row.find('.discount').val(selectedDiscount);
+            
 
             // Trigger the input event to calculate the amount and update net_Amount
             row.find('.quantity').trigger('input');
@@ -55,18 +61,25 @@
         $(document).on('input', '.quantity', function () {
             var quantity = $(this).val();
             var productPrice = $(this).closest('tr').find('.product-price').val();
+            var discount = $(this).closest('tr').find('.discount').val();
+
 
             // Calculate the amount for the current row
             var amount = quantity * productPrice;
             $(this).closest('tr').find('.amount').val(amount);
 
-            // Update net_Amount for all rows
+            var dis = amount *(selectedDiscount/100);
+            $(this).closest('tr').find('.discount').val(dis);
+console.log(dis);
+// Update net_Amount and discount for all rows
             updateNetAmount();
+            updateDiscount();
 
-            // Calculate and update free quantity
+// Calculate and update free quantity
             calculateAndDisplayFreeQuantity($(this));
 
-            // Update the balance
+// Update the total_amount and balance
+            updateTotalAmount();
             updateBalance();
         });
         
@@ -74,7 +87,7 @@
             updateBalance();
         });
 
-        // Function to update net_Amount for all rows
+// Function to update net_Amount , total_amount and discount for all rows
         function updateNetAmount() {
             net_Amount = 0;
             $('.amount').each(function () {
@@ -82,14 +95,28 @@
             });
             $('#net_Amount').val(net_Amount);
         }
-         // Function to update the balance
+
+        function updateDiscount() {
+            tot_discount = 0;
+            $('.discount').each(function () {
+                tot_discount += parseFloat($(this).val()) || 0;
+            });
+            $('#tot_discount').val(tot_discount);
+        }
+
+        function updateTotalAmount() {
+            tot_Amount = 0;
+            tot_Amount = net_Amount - tot_discount;
+            $('#tot_Amount').val(tot_Amount);
+        }
+// Function to update the balance
         function updateBalance() {
             var payment = parseFloat($('#pay').val()) || 0;
-            balance = net_Amount - payment;
+            balance = tot_Amount - payment;
             $('#balance').val(balance);
         }
 
-    // Dynamic Table Creation
+// Dynamic Table Creation
         $("#add").click(function () {
             let i = $('.sl').length + 1;
             let html =
@@ -99,7 +126,7 @@
                 'optgroup><label>Select Purchase Product</label>' +
                 '<option value="" selected disabled hidden>Select Product</option>' +
                 '@foreach ($products as $product)' +
-                '<option value="{{ $product->productName }}" data-name="{{ $product->productName }}" data-price="{{ $product->productPrice }}" data-code="{{ $product->product_code}}">{{ $product->productName }}</option>' +
+                '<option value="{{ $product->productName }}" data-name="{{ $product->productName }}" data-price="{{ $product->productPrice }}" data-code="{{ $product->product_code}}" data-discount="{{ $product->discount}}">{{ $product->productName }}</option>' +
                 '@endforeach' +
                 '</optgroup>' +
                 '</select>' +
@@ -108,6 +135,7 @@
                 '<td><input type="text" name="product_price[]" id="product_price' + i + '"  class="form-control product-price" readonly></td>' +
                 '<td><input type="text" name="quantity[]" id="quantity' + i + '"  class="form-control quantity"></td>' +
                 '<td><input type="text" name="free[]" id="free' + i + '"  class="form-control free" readonly></td>' +
+                '<td><input type="text" name="discount[]" id="discount' + i + '"  class="form-control discount" readonly></td>' +
                 '<td><input type="text" name="amount[]" id="amount' + i + '"  class="form-control amount" readonly></td>' +
                 '<td><button class="btn btn-danger remove" type="button" name="remove">Remove</button></td>' +
                 '</tr>';
@@ -242,6 +270,7 @@
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Free quantity</th>
+                            <th>Discount (Rs.)</th>
                             <th>Amount</th>
                             <th></th>
                         </tr>
@@ -252,9 +281,12 @@
                     <tr><th><input class="btn btn-warning" type="button" name="add" id="add"  value="Add Row"></th></tr>
                 </table>
                 <table>
-                    <tr><td><h5>Net Amount</h5></td><td><input type="text" name="net_Amount" id="net_Amount" class="form-control" readonly></td></tr>
-                    <tr><td><h5>Payment</h5></td><td><input type="text" name="pay" id="pay" class="form-control" placeholder="0.00"></td></tr>
-                    <tr><td><h5>Balance</h5></td><td><input type="text" name="balance" id="balance" class="form-control" readonly></td></tr>
+                    {{-- net_Amount veriabel mean sun totalamount --}}
+                    <tr><td><h6>Sub Total Amount</h6></td><td><input type="text" name="net_Amount" id="net_Amount" class="form-control" readonly></td></tr>
+                    <tr style="border-bottom: 3px solid black;"><td><h6>Discount</h6></td><td><input type="text" name="tot_discount" id="tot_discount" class="form-control" readonly></td></tr>
+                    <tr><td><h6>Total Amount</h6></td><td><input type="text" name="tot_Amount" id="tot_Amount" class="form-control" readonly></td></tr>
+                    <tr style="border-bottom: 2px solid black;"><td><h6>Payment</h6></td><td><input type="text" name="pay" id="pay" class="form-control" placeholder="0.00"></td></tr>
+                    <tr style="border-bottom: 4px solid black;"><td><h6>Balance</h6></td><td><input type="text" name="balance" id="balance" class="form-control" readonly></td></tr>
                 </table>
 
                 

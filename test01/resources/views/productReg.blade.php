@@ -25,6 +25,13 @@
 
             <label class="form-label">Expiry Date</label>
             <input type="date" class="form-control" name="expiryDate" required>
+
+            <hr>
+            <h1>DEFINE DISCOUNT</h1>
+            <hr>
+
+            <label class="form-label">Discount (%) </label>
+            <input type="text" class="form-control" name="discount" id="discount" required>
         </div>  
             <input type="submit" value="ADD" class="btn btn-primary">
         </form>

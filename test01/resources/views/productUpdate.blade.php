@@ -39,6 +39,15 @@
             <input type="date" class="form-control" id="expiryDate" name="expiryDate" value="{{ old('expiryDate', $task->expiryDate) }}" required>
         </div>
 
+        <div class="form-group">
+            <hr>
+            <h1>DEFINE DISCOUNT</h1>
+            <hr>
+
+            <label class="form-label">Discount (%) </label>
+            <input type="text" class="form-control" name="discount" id="discount" value="{{ old('discount', $task->discount) }}" required>
+            </div>
+            
         <button type="submit" class="btn btn-primary">Update Product</button>
     </form>
 </body>

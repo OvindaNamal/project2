@@ -22,7 +22,10 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
+                <th>Last Paid</th>
                 <th>Customer Name</th>
+                <th>Sub Total Amount</th>
+                <th>Discount</th>
                 <th>Total Amount</th>
                 <th>Total Balance</th>
                 <th>All Orders</th>
@@ -31,8 +34,11 @@
         <tbody>
             @foreach ($customerBalances as $customer)
                 <tr>
+                    <td>{{ \Carbon\Carbon::parse($customer->updated_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td>
                     <td>{{ $customer->customer_name }}</td>
                     <td>{{ $customer->total_net_amount }}</td>
+                    <td>{{ $customer->total_discount }}</td>
+                    <td>{{ $customer->total_amount }}</td>
                     <td>{{ $customer->total_balance }}</td>
                     {{-- <td><a href="{{ route('allOrders.view', $customer->customer_name) }}"><b>View</b></a></td> --}}
                     <td>

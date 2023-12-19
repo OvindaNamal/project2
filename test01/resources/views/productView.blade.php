@@ -15,6 +15,7 @@
                 <th>Product Name</th>
                 <th>Product Code</th>
                 <th>Price</th>
+                <th>Discount (%)</th>
                 <th>Expiry Date</th>
                 <th colspan="2">Action</th>
             </tr>
@@ -26,6 +27,7 @@
                 <td>{{$task->productName}}</td>
                 <td>{{$task->product_code}}</td> 
                 <td>{{$task->productPrice}}</td>
+                <td>{{$task->discount}}</td> 
                 <td>{{$task->expiryDate}}</td> 
 
                 <td><a href="{{route('productReg.edit',$task->id)}}">Update</a></td>

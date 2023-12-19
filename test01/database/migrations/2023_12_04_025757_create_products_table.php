@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('productName');
             $table->integer('product_code');
             $table->integer('productPrice');
+            $table->integer('discount');
             $table->date('expiryDate');
             $table->timestamps();
         });

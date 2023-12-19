@@ -16,8 +16,11 @@ class PlacingOrder extends Model
         'product_price',
         'quantity',
         'free',
+        'discount',
         'amount',
-        'net_Amount',
+        'net_Amount', // mean sub total amonunt
+        'tot_discount',
+        'tot_Amount',
         'pay',
         'balance'
     ];

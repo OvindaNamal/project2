@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <style>
+        .tab {
+            display: inline-block;
+            margin-left: 4em;
+        }
+        .colour{
+            color: rgb(255, 255, 255);
+        }
+    </style>
 </head>
 
 <body class="container">
@@ -73,10 +82,15 @@
             </table>
 
         </div>
-
-        <div style="display: flex; flex-direction: column;">
-            <h5>Net Amount : {{ $order->net_Amount}}.00</h5> <br>  
-        </div> 
+ 
+        <table>
+            <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
+                <td style="text-align: right;"><b>{{ $order->net_Amount}}.00</b></td></tr>
+            <tr style="border-bottom: 1px solid black;"><td><b>Discount</b></td> <td>:</td>          
+                <td style="text-align: right;"><b>{{ $order->tot_discount}}.00</b></td></tr>
+            <tr style="border-bottom: 3px solid black;"><td><b>Total Amount</b></td>  <td>:</td>     
+                <td style="text-align: right;"><b>{{ $order->tot_Amount}}.00</b></td></tr>
+        </table> <br>
         <button class="btn btn-info" onclick="window.print()">Print Order Sheet</button> 
 </body>
 </html>

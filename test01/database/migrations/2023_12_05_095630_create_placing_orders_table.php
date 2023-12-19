@@ -22,8 +22,11 @@ return new class extends Migration
             $table->text("product_price");
             $table->integer("quantity");
             $table->integer("free");
+            $table->integer("discount");
             $table->integer("amount");
-            $table->integer("net_Amount");
+            $table->integer("net_Amount"); // mean sun total amount
+            $table->integer("tot_discount");
+            $table->integer("tot_Amount");
             $table->integer("pay");
             $table->integer("balance");
             $table->timestamps();
