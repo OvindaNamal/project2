@@ -263,7 +263,7 @@
             <hr>
  
                 <table class="table table-bordered" id="productTable">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark" style="text-align: center;">
                         <tr>
                             <th>Product Name</th>
                             <th>Product Code</th>

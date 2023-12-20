@@ -44,7 +44,7 @@
 
         <div style="margin-top: 30px;">
             <table class="table">
-                <thead class="thead-dark">
+                <thead class="thead-dark" style="text-align: center;">
                     <tr>
                         <th>Product Name</th>
                         <th>Product Code</th>

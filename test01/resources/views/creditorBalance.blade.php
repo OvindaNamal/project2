@@ -20,7 +20,7 @@
     <h1>Creditor Balance</h1>
 
     <table class="table">
-        <thead class="thead-dark">
+        <thead class="thead-dark" style="text-align: center;">
             <tr>
                 <th>Customer Name</th>
                 <th>Sub Total Amount</th>
@@ -35,10 +35,10 @@
                 <tr>
                     {{-- <td>{{ \Carbon\Carbon::parse($customer->updated_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td> --}}
                     <td>{{ $customer->customer_name }}</td>
-                    <td>{{ $customer->total_net_amount }}</td>
-                    <td>{{ $customer->total_discount }}</td>
-                    <td>{{ $customer->total_amount }}</td>
-                    <td>{{ $customer->total_balance }}</td>
+                    <td style="text-align: center;">{{ $customer->total_net_amount }}</td>
+                    <td style="text-align: center;">{{ $customer->total_discount }}</td>
+                    <td style="text-align: center;">{{ $customer->total_amount }}</td>
+                    <td style="text-align: center;">{{ $customer->total_balance }}</td>
                     {{-- <td><a href="{{ route('allOrders.view', $customer->customer_name) }}"><b>View</b></a></td> --}}
                     <td>
                     <form action="{{ route('allOrders.view', $customer->customer_name) }}" method="get">

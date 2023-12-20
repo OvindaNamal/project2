@@ -66,7 +66,7 @@
         <form action="/download-pdf" method="POST">
             @csrf
             <table class="table table-bordered">
-                <thead class="thead-dark">
+                <thead class="thead-dark" style="text-align: center;">
                     <tr>
                         <th>Select</th>
                         <th>Order No</th>
