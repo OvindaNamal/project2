@@ -9,7 +9,7 @@
     <h2>Product View</h2>
 
     <table class="table table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-dark" style="text-align: center;">
             <tr>
                 <th>ID</th>
                 <th>Product Name</th>
