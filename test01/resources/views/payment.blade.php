@@ -97,7 +97,7 @@
                 
             </table>
 
-        </div>
+        </div><hr>
 
         <div style="display: flex; flex-direction: column;">
             <h5>Sub Total Amount : {{ $order->net_Amount}}.00</h5> <br> 

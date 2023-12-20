@@ -66,10 +66,16 @@
                 </table>
             </form>
         </div>
+        
+        <table>
+            <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
+                <td style="text-align: right;"><b>{{ $order->net_Amount}}.00</b></td></tr>
+            <tr style="border-bottom: 1px solid black;"><td><b>Discount</b></td> <td>:</td>          
+                <td style="text-align: right;"><b>{{ $order->tot_discount}}.00</b></td></tr>
+            <tr style="border-bottom: 3px solid black;"><td><b>Total Amount</b></td>  <td>:</td>     
+                <td style="text-align: right;"><b>{{ $order->tot_Amount}}.00</b></td></tr>
+        </table> <br>
 
-        <div style="display: flex; flex-direction: column;">
-            <h5>Net Amount : {{ $order->net_Amount}}.00</h5> <br>
-        </div>
         <div class="page-break"></div>
     @endforeach
     {{-- @endif --}}
