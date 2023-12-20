@@ -1,5 +1,3 @@
-
-
 <html>
 <head>
     <title>View Page</title>
@@ -24,8 +22,7 @@
     <h2>Order Details</h2>
     <form class="mb-3">
 
-        <div style="display: flex; flex-direction: row;">
-      
+        <div style="display: flex; flex-direction: row;">     
             <div style="display: flex; flex-direction: column;">
 
                 <div class="form-group;">
@@ -35,24 +32,18 @@
                         @endforeach
                 </div>
 
-
                 <div class="form-group;">
                     <label for="name">Customer Name : </label>
                     @foreach($uniqueOrderNumber as $order)
                         <h5>{{ $order['customer_name'] }}</h5>
                     @endforeach
                 </div>
-
             </div>
-              
-
         </div>
 
 
         <div style="margin-top: 30px;">
-
             <table class="table">
-
                 <thead class="thead-dark">
                     <tr>
                         <th>Product Name</th>
@@ -75,12 +66,9 @@
                         <td>{{$order["free"]}}</td>
                         <td style="text-align: left;">{{$order["amount"]}}</td>
                     </tr>
-                    @endforeach
-                    
-                </tbody>
-                
+                    @endforeach                  
+                </tbody>               
             </table>
-
         </div>
  
         <table>
