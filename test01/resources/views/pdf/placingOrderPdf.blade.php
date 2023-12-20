@@ -54,11 +54,11 @@
                             @if ($item['order_No'] == $order['order_No'])
                                 <tr>
                                     <td>{{$item["pu_product"]}}</td>
-                                    <td>{{$item["product_code"]}}</td>
-                                    <td>{{$item["product_price"]}}</td>
-                                    <td>{{$item["quantity"]}}</td>
-                                    <td>{{$item["free"]}}</td>
-                                    <td style="text-align: left;">{{$item["amount"]}}</td>
+                                    <td style="text-align: center;">{{$item["product_code"]}}</td>
+                                    <td style="text-align: right;">{{number_format($item["product_price"],2)}}</td>
+                                    <td style="text-align: center;">{{$item["quantity"]}}</td>
+                                    <td style="text-align: center;">{{$item["free"]}}</td>
+                                    <td style="text-align: right;">{{number_format($item["amount"],2)}}</td>
                                 </tr>
                             @endif
                         @endforeach
@@ -68,11 +68,11 @@
         </div>
         <table>
             <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
-                <td style="text-align: right;"><b>{{ $order->net_Amount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{ number_format($order->net_Amount,2)}}</b></td></tr>
             <tr style="border-bottom: 1px solid black;"><td><b>Discount</b></td> <td>:</td>          
-                <td style="text-align: right;"><b>{{ $order->tot_discount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{number_format ($order->tot_discount,2)}}</b></td></tr>
             <tr style="border-bottom: 3px solid black;"><td><b>Total Amount</b></td>  <td>:</td>     
-                <td style="text-align: right;"><b>{{ $order->tot_Amount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{ number_format($order->tot_Amount,2)}}</b></td></tr>
         </table> <br>
 
         <div class="page-break"></div>
