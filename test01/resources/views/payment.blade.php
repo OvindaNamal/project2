@@ -100,9 +100,11 @@
         </div>
 
         <div style="display: flex; flex-direction: column;">
-            <h5>Net Amount : {{ $order->net_Amount}}.00</h5> <br> 
+            <h5>Sub Total Amount : {{ $order->net_Amount}}.00</h5> <br> 
         </div>
         <table >
+            <tr><td><h5>Discount</h5></td><td><input type="text" name="tot_discount" id="tot_discount" value="{{$order->tot_discount}}"  class="form-control" readonly></td></tr>
+            <tr><td><h5>Total Amount</h5></td><td><input type="text" name="Tot_Amount" id="Tot_Amount" value="{{$order->tot_Amount}}"  class="form-control" readonly></td></tr>
             <tr><td><h5>Balance</h5></td><td><input type="text" name="balance" id="balance" value="{{$order->balance}}"  class="form-control" readonly></td></tr>
             <tr><td><h5>Payment</h5></td><td><input type="text" name="pay" id="pay"  class="form-control" placeholder="0.00"></td></tr>
         </table> <br> 
