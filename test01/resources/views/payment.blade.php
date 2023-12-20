@@ -86,10 +86,10 @@
                     <tr>
                         <td>{{$order["pu_product"]}}</td>
                         <td>{{$order["product_code"]}}</td>
-                        <td>{{$order["product_price"]}}</td>
+                        <td style="text-align: right;">{{number_format($order["product_price"],2)}}</td>
                         <td>{{$order["quantity"]}}</td>
                         <td>{{$order["free"]}}</td>
-                        <td style="text-align: left;">{{$order["amount"]}}</td>
+                        <td style="text-align: right;">{{number_format($order["amount"],2)}}</td>
                     </tr>
                     @endforeach
                     
@@ -100,12 +100,12 @@
         </div><hr>
 
         <div style="display: flex; flex-direction: column;">
-            <h5>Sub Total Amount : {{ $order->net_Amount}}.00</h5> <br> 
+            <h5>Sub Total Amount : {{number_format ($order->net_Amount,2)}}</h5> <br> 
         </div>
         <table >
-            <tr><td><h5>Discount</h5></td><td><input type="text" name="tot_discount" id="tot_discount" value="{{$order->tot_discount}}"  class="form-control" readonly></td></tr>
-            <tr><td><h5>Total Amount</h5></td><td><input type="text" name="Tot_Amount" id="Tot_Amount" value="{{$order->tot_Amount}}"  class="form-control" readonly></td></tr>
-            <tr><td><h5>Balance</h5></td><td><input type="text" name="balance" id="balance" value="{{$order->balance}}"  class="form-control" readonly></td></tr>
+            <tr><td><h5>Discount</h5></td><td><input type="text" name="tot_discount" id="tot_discount" value="{{number_format($order->tot_discount,2)}}"  class="form-control" readonly></td></tr>
+            <tr><td><h5>Total Amount</h5></td><td><input type="text" name="Tot_Amount" id="Tot_Amount" value="{{number_format($order->tot_Amount,2)}}"  class="form-control" readonly></td></tr>
+            <tr><td><h5>Balance</h5></td><td><input type="text" name="balance" id="balance" value="{{number_format($order->balance,2)}}"  class="form-control" readonly></td></tr>
             <tr><td><h5>Payment</h5></td><td><input type="text" name="pay" id="pay"  class="form-control" placeholder="0.00"></td></tr>
         </table> <br> 
         <button type="submit" class="btn btn-primary">Pay</button>

@@ -66,7 +66,6 @@
                 </table>
             </form>
         </div>
-        
         <table>
             <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
                 <td style="text-align: right;"><b>{{ $order->net_Amount}}.00</b></td></tr>

@@ -88,8 +88,8 @@
                         <td>{{$task->customer_name}}</td> 
                         <td>{{ \Carbon\Carbon::parse($task->created_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td>
                         <td>{{ \Carbon\Carbon::parse($task->updated_at)->timezone('Asia/Colombo')->format('Y-m-d') }}</td>
-                        <td>{{$task->tot_Amount}}</td>
-                        <td>{{$task->balance}}</td>
+                        <td style="text-align: right;">{{number_format($task->tot_Amount,2)}}</td>
+                        <td style="text-align: right;">{{number_format($task->balance,2)}}</td>
 
                         <td><a href="{{ route('placingOrders.view', $task->order_No) }}" style="color: rgb(34, 0, 255);"><b>View</b></a></td>
                         <td><a href="{{ route('paydetails', $task->order_No) }}" style="color: rgb(135, 0, 65);"><b>payment</b></a></td>

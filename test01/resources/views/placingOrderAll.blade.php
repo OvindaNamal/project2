@@ -51,11 +51,11 @@
                         <td>{{ $order->created_at->format('Y-m-d') }}</td>
                         <td style="text-align: center;">{{ $order->order_No }}</td>
                         <td>{{ $order->pu_product }}</td>
-                        <td style="text-align: right;">{{ $order->product_price }}.00</td>
+                        <td style="text-align: right;">{{ number_format($order->product_price,2) }}</td>
                         <td style="text-align: center;">{{ $order->quantity }}</td>
-                        <td style="text-align: right;">{{ $order->amount }}.00</td>
-                        <td style="text-align: right;">{{ $order->discount }}.00</td>
-                        <td style="text-align: right;">{{ $order->amount - $order->discount }}.00</td>
+                        <td style="text-align: right;">{{ number_format($order->amount,2) }}</td>
+                        <td style="text-align: right;">{{ number_format($order->discount,2) }}</td>
+                        <td style="text-align: right;">{{ number_format($order->amount - $order->discount,2) }}</td>
                         <td>
                             <form action="{{ route('deleteOrder', ['id' => $order->id]) }}" method="POST">
                                 @csrf
@@ -75,11 +75,11 @@
 
         <table>
             <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
-                <td style="text-align: right;"><b>{{ $subtotal}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{ number_format($subtotal,2)}}</b></td></tr>
             <tr style="border-bottom: 1px solid black;"><td><b>Discount</b></td> <td>:</td>          
-                <td style="text-align: right;"><b>{{ $totalDiscount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{ number_format($totalDiscount,2)}}</b></td></tr>
             <tr style="border-bottom: 3px solid black;"><td><b>Total Amount</b></td>  <td>:</td>     
-                <td style="text-align: right;"><b>{{ $totalAmount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{ number_format($totalAmount,2)}}</b></td></tr>
         </table> <br>
     @endif
     <button class="btn btn-info" onclick="window.print()">Print Order Sheet</button>
