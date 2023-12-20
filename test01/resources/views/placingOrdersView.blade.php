@@ -48,7 +48,7 @@
                     <tr>
                         <th>Product Name</th>
                         <th>Product Code</th>
-                        <th>Price</th>
+                        <th>Unite Price</th>
                         <th>Quantity</th>
                         <th>Free</th>
                         <th>Amount</th>
@@ -60,11 +60,11 @@
                     @foreach($orderNumber as $order)
                     <tr>
                         <td>{{$order["pu_product"]}}</td>
-                        <td>{{$order["product_code"]}}</td>
-                        <td>{{$order["product_price"]}}</td>
-                        <td>{{$order["quantity"]}}</td>
-                        <td>{{$order["free"]}}</td>
-                        <td style="text-align: left;">{{$order["amount"]}}</td>
+                        <td style="text-align: center;">{{$order["product_code"]}}</td>
+                        <td style="text-align: right;">{{number_format($order["product_price"],2)}}</td>
+                        <td style="text-align: center;">{{$order["quantity"]}}</td>
+                        <td style="text-align: center;">{{$order["free"]}}</td>
+                        <td style="text-align: right;">{{number_format($order["amount"],2)}}</td>
                     </tr>
                     @endforeach                  
                 </tbody>               
@@ -73,11 +73,11 @@
  
         <table>
             <tr><td><b>Sub Total Amount</b></td> <td>:</td> 
-                <td style="text-align: right;"><b>{{ $order->net_Amount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{number_format ($order->net_Amount,2)}}</b></td></tr>
             <tr style="border-bottom: 1px solid black;"><td><b>Discount</b></td> <td>:</td>          
-                <td style="text-align: right;"><b>{{ $order->tot_discount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{number_format ($order->tot_discount,2)}}</b></td></tr>
             <tr style="border-bottom: 3px solid black;"><td><b>Total Amount</b></td>  <td>:</td>     
-                <td style="text-align: right;"><b>{{ $order->tot_Amount}}.00</b></td></tr>
+                <td style="text-align: right;"><b>{{number_format ($order->tot_Amount,2)}}</b></td></tr>
         </table> <br>
         <button class="btn btn-info" onclick="window.print()">Print Order Sheet</button> 
 </body>
