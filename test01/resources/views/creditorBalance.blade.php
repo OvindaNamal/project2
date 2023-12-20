@@ -40,12 +40,12 @@
                     <td style="text-align: center;">{{ number_format($customer->total_amount,2) }}</td>
                     <td style="text-align: center;">{{ number_format($customer->total_balance,2) }}</td>
                     {{-- <td><a href="{{ route('allOrders.view', $customer->customer_name) }}"><b>View</b></a></td> --}}
-                    <td>
-                    <form action="{{ route('allOrders.view', $customer->customer_name) }}" method="get">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">View</button>
-                    </form>
-                </td>
+                    <td style="text-align: center;">
+                        <form action="{{ route('allOrders.view', $customer->customer_name) }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">View</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
