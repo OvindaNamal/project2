@@ -12,6 +12,7 @@
     <br>
     <div style="text-align:center;">
         <a href="/productReg"><button  class="btn btn-primary">Add Product</button></a>
+        <a href="{{route('productStock.view')}}"><button  class="btn btn-primary">Stock</button></a>
         <a href="/customerReg"><button  class="btn btn-primary">Customer Registration</button></a> 
         <a href="/defineFreeIssues"><button  class="btn btn-primary">Define Free Issues</button></a> 
         <a href="/placingOrder"><button  class="btn btn-primary">Placing Order</button></a> 

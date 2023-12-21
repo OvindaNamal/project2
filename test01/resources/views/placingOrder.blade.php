@@ -9,9 +9,6 @@
 
     <title>Placing Order</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    {{-- <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="js/bootstrap.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -70,7 +67,7 @@
 
             var dis = amount *(selectedDiscount/100);
             $(this).closest('tr').find('.discount').val(dis);
-console.log(dis);
+//console.log(dis);
 // Update net_Amount and discount for all rows
             updateNetAmount();
             updateDiscount();

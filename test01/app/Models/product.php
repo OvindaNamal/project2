@@ -13,6 +13,7 @@ class product extends Model
         'product_code',
         'productPrice',
         'discount',
-        'expiryDate'
+        'expiryDate',
+        'stock'
     ];
 }
