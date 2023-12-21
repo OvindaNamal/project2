@@ -61,6 +61,10 @@ Route::prefix('/productView')->group(function(){
     Route::get('/delete/{task_id}',[ProductController::class, "delete"])->name('productReg.delete');
     Route::get('/edit-product/{task_id}', [ProductController::class, 'edit'])->name('productReg.edit');
     Route::put('/update-product/{task_id}', [ProductController::class, 'update'])->name('productReg.update');
+    //stock
+    Route::get('/productStockView',[ProductController::class, "stock_view"])->name('productStock.view');
+    Route::get('/edit-stock/{task_id}', [ProductController::class, 'editStock'])->name('stock.edit');
+    Route::put('/update-stock/{task_id}', [ProductController::class, 'updateStock'])->name('stock.update');
 });
 
 

@@ -7,6 +7,8 @@
         <br>
     <div class="container col-md-5">
     <a href="/"><button  class="btn btn-primary">Home</button></a>
+    <a href="{{route('productReg.view')}}"><button  class="btn btn-primary">View All Products</button></a>
+    <a href="{{route('productStock.view')}}"><button  class="btn btn-primary">Stock</button></a>
     <hr>
     <h1>PRODUCT REGISTRATION</h1>
     <hr>
@@ -27,15 +29,17 @@
             <input type="date" class="form-control" name="expiryDate" required>
 
             <hr>
-            <h1>DEFINE DISCOUNT</h1>
+            <h3>DEFINE DISCOUNT & STOCK</h3>
             <hr>
 
             <label class="form-label">Discount (%) </label>
             <input type="text" class="form-control" name="discount" id="discount" required>
+
+            <label class="form-label">Stock</label>
+            <input type="text" class="form-control" name="stock" id="stock" required>
         </div>  
             <input type="submit" value="ADD" class="btn btn-primary">
         </form>
-    <a href="{{route('productReg.view')}}">View All Products</a>
     </div>
     </body>
 </html>

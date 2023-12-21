@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('productPrice');
             $table->integer('discount');
             $table->date('expiryDate');
+            $table->integer('stock');
             $table->timestamps();
         });
     }

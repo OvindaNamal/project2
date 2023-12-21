@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlacingOrder;
 use App\Models\product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -87,4 +89,77 @@ class ProductController extends Controller
         $products = product::pluck('productName', 'id');
         return view('defineFreeIssues', compact('products'));
     }
+
+
+//-----------stock-------------
+
+    public function stock_view()
+    {
+        // Fetch all tasks/products
+        $tasks = product::all(); // Replace with your actual model
+
+        $productCodes = $tasks->pluck('product_code')->unique();
+
+        // Iterate through each product code
+        foreach ($productCodes as $productCode) {
+            // Calculate total quantity and total free for the product
+            $totalQuantity = PlacingOrder::where('product_code', $productCode)->sum('quantity');
+            $totalFree = PlacingOrder::where('product_code', $productCode)->sum('free');
+            
+            // Calculate stock balance for the product
+            $stockBalance = $tasks->where('product_code', $productCode)->first()->stock - ($totalQuantity + $totalFree);
+    
+            // Update the $tasks collection with the calculated values
+            $tasks->where('product_code', $productCode)->each(function ($task) use ($totalQuantity, $totalFree, $stockBalance) {
+                $task->totalQuantity = $totalQuantity;
+                $task->totalFree = $totalFree;
+                $task->stockBalance = $stockBalance;
+            });
+        }
+        // Pass the tasks to the view
+        return view('productStockView', compact('tasks'));
+    }
+
+
+
+
+// update stock part
+    public function editStock($task_id)
+    {
+        $task = $this->task->find($task_id);
+
+        // Check if the task is found
+        if (!$task) {
+            return redirect()->back()->with('error', 'Task not found');
+        }
+
+        return view('productStockUpdate', compact('task'));
+    }
+
+    public function updateStock(Request $request, $task_id)
+    {
+        $task = $this->task->find($task_id);
+    
+        // Check if the task is found
+        if (!$task) {
+            return redirect()->back()->with('error', 'Task not found');
+        }
+    
+        // Validate the request data
+        $request->validate([
+            'addStock' => 'required|numeric|min:0',
+        ]);
+    
+        // Update task data by adding the new stock value
+        $currentStock = $task->stock;
+        $addStock = $request->input('addStock');
+        $newStock = $currentStock + $addStock;
+    
+        $task->update([
+            'stock' => $newStock,
+        ]);
+    
+        return redirect()->route('productStock.view')->with('success', 'Stock updated successfully');
+    }
+
 }
