@@ -65,6 +65,8 @@ Route::prefix('/productView')->group(function(){
     Route::get('/productStockView',[ProductController::class, "stock_view"])->name('productStock.view');
     Route::get('/edit-stock/{task_id}', [ProductController::class, 'editStock'])->name('stock.edit');
     Route::put('/update-stock/{task_id}', [ProductController::class, 'updateStock'])->name('stock.update');
+    //import excel
+    Route::POST('/import_product', [ProductController::class, 'import_product'])->name('import_product');
 });
 
 
@@ -77,6 +79,8 @@ Route::prefix('/customerView')->group(function(){
     Route::get('/',[CustomerController::class,"view"])->name('customer.view');
     Route::get('/editCustomer/{task_id}',[CustomerController::class, "editCust"])->name('customer.edit');
     Route::post('updateCustomer/{task_id}',[CustomerController::class,"updateCust"])->name('customer.update');
+    //import excel
+    Route::POST('/import_customer', [CustomerController::class, 'import_customer'])->name('import_customer');
 });
 
 

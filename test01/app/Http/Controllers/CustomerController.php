@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Imports\CustomerImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -49,5 +51,15 @@ class CustomerController extends Controller
         ]);
 
         return redirect()->route('customer.view')->with('success', 'Product updated successfully');
+    }
+//upload data using excel file
+    public function import_customer (Request $request){
+        $request->validate([
+            'excel-file'=>'required|mimes:xlsx'
+        ]);
+
+        Excel::import(new CustomerImport, $request -> file('excel-file'));
+        
+        return redirect()->back()->with('success', 'All Customer Added Success....');
     }
 }
