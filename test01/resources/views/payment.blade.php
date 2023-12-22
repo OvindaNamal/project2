@@ -14,22 +14,29 @@
             var payInput = document.getElementById('pay');
             var balanceInput = document.getElementById('balance');
             var delayTimer;
-
+    
             payInput.addEventListener('input', function () {
                 clearTimeout(delayTimer);
-                delayTimer = setTimeout(function() {
+                delayTimer = setTimeout(function () {
                     updateBalance();
                 }, 1000); // Adjust the delay time (in milliseconds) as needed
             });
-
+    
             function updateBalance() {
-                var balance = parseFloat(balanceInput.value) || 0;
-                var pay = parseFloat(payInput.value) || 0;
-                balance = balance - pay;
-                balanceInput.value = balance;
+                var currentBalance = parseFloat(balanceInput.value.replace(/,/g, '')) || 0;
+                var pay = parseFloat(payInput.value.replace(/,/g, '')) || 0;
+                var newBalance = currentBalance - pay;
+                balanceInput.value = formatNumber(newBalance);
+            }
+    
+            // Helper function to format numbers with commas
+            function formatNumber(number) {
+                return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
             }
         });
     </script>
+    
+    
 
 </head>
 <body class="container"><br>
