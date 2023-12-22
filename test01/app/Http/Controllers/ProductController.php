@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PlacingOrder;
 use App\Models\product;
 use Illuminate\Http\Request;
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -160,6 +162,17 @@ class ProductController extends Controller
         ]);
     
         return redirect()->route('productStock.view')->with('success', 'Stock updated successfully');
+    }
+
+//--------excel bulck import---------
+    public function import_product (Request $request){
+        $request->validate([
+            'excel-file'=>'required|mimes:xlsx'
+        ]);
+
+        Excel::import(new ProductImport, $request -> file('excel-file'));
+        
+        return redirect()->back()->with('success', 'All Product Added Success....');
     }
 
 }

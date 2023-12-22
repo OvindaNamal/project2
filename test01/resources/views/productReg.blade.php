@@ -39,6 +39,23 @@
             <input type="text" class="form-control" name="stock" id="stock" required>
         </div>  
             <input type="submit" value="ADD" class="btn btn-primary">
+
+        </form> <br>
+        
+        @if(Session::has ('success'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get ('success')}}
+        </div>
+        @endif
+
+        <form class="row g-3" action="{{route('import_product')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="col-auto">
+                <input type="file" class="form-control" name="excel-file">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Upload Excel File</button>
+            </div>
         </form>
     </div>
     </body>
