@@ -2,6 +2,22 @@
 <head>
     <title>Product Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // Get the "stock" input element
+          var stockInput = document.getElementById("stock");
+      
+          // Get the "available_stock" input element
+          var availableStockInput = document.getElementById("available_stock");
+      
+          // Add an event listener to the "stock" input for the "input" event
+          stockInput.addEventListener("input", function() {
+            // Assign the value of "stock" to "available_stock"
+            availableStockInput.value = stockInput.value;
+          });
+        });
+      </script>
 </head>
     <body>
         <br>
@@ -37,6 +53,8 @@
 
             <label class="form-label">Stock</label>
             <input type="text" class="form-control" name="stock" id="stock" required>
+            <input type="text" class="form-control" name="available_stock" id="available_stock" required style="display: none;">
+
         </div>  
             <input type="submit" value="ADD" class="btn btn-primary">
 

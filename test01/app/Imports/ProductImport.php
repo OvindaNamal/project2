@@ -20,7 +20,8 @@ class ProductImport implements ToModel
             'productPrice'  => $row[2],
             'discount'      => $row[3],
             'expiryDate'    => $row[4],
-            'stock'         => $row[5]
+            'stock'         => $row[5],
+            'available_stock' => $row[6],
         ]);
     }
 }

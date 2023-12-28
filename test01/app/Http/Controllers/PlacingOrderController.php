@@ -111,7 +111,7 @@ class PlacingOrderController extends Controller
                 }
             }
     //return $request;
-            return redirect()->back()->with('success', 'Order placed successfully.');
+         return redirect()->back()->with('success', 'Order placed successfully.');
         } catch (\Exception $e) {
             // Log the error or handle it as needed
             return redirect()->back()->with('error', 'An error occurred while processing the order.');
