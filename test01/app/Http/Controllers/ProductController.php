@@ -110,7 +110,8 @@ class ProductController extends Controller
             
             // Calculate stock balance for the product
             $stockBalance = $tasks->where('product_code', $productCode)->first()->stock - ($totalQuantity + $totalFree);
-    
+            Product::where('product_code', $productCode)->update(['available_stock' => $stockBalance]);
+            
             // Update the $tasks collection with the calculated values
             $tasks->where('product_code', $productCode)->each(function ($task) use ($totalQuantity, $totalFree, $stockBalance) {
                 $task->totalQuantity = $totalQuantity;

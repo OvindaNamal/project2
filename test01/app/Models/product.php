@@ -14,6 +14,7 @@ class product extends Model
         'productPrice',
         'discount',
         'expiryDate',
-        'stock'
+        'stock',
+        'available_stock'
     ];
 }

@@ -34,6 +34,7 @@
         var selectedCode;
         var selectedDiscount;
         var multyFree;
+        var availableStock;
 
         // Event listener for changes in the product select
         $(document).on('change', '.product-select', function () {
@@ -42,12 +43,13 @@
             selectedCode = selectedOption.data('code');
             selectedDiscount = selectedOption.data('discount'); 
             namee = selectedOption.data('name');
+            availableStock = selectedOption.data('available_stock');
             
             // Find the closest row and update the related fields
             var row = $(this).closest('tr');
             row.find('.product-code').val(selectedCode);
             row.find('.product-price').val(selectedPrice);
-            //row.find('.discount').val(selectedDiscount);
+            row.find('.available-stock').val(availableStock);
             
 
             // Trigger the input event to calculate the amount and update net_Amount
@@ -123,7 +125,7 @@
                 'optgroup><label>Select Purchase Product</label>' +
                 '<option value="" selected disabled hidden>Select Product</option>' +
                 '@foreach ($products as $product)' +
-                '<option value="{{ $product->productName }}" data-name="{{ $product->productName }}" data-price="{{ $product->productPrice }}" data-code="{{ $product->product_code}}" data-discount="{{ $product->discount}}">{{ $product->productName }}</option>' +
+                '<option value="{{ $product->productName }}" data-name="{{ $product->productName }}" data-price="{{ $product->productPrice }}" data-code="{{ $product->product_code}}" data-discount="{{ $product->discount}}" data-available_stock="{{ $product->available_stock}}">{{ $product->productName }}</option>' + 
                 '@endforeach' +
                 '</optgroup>' +
                 '</select>' +
@@ -131,6 +133,7 @@
                 '<td><input type="text" name="product_code[]" id="product_code' + i + '" class="form-control product-code" readonly></td>' +
                 '<td><input type="text" name="product_price[]" id="product_price' + i + '"  class="form-control product-price" readonly></td>' +
                 '<td><input type="text" name="quantity[]" id="quantity' + i + '"  class="form-control quantity"></td>' +
+                '<td><input type="text" name="available_stock[]" id="available_stock' + i + '"  class="form-control available-stock" readonly></td>' +
                 '<td><input type="text" name="free[]" id="free' + i + '"  class="form-control free" readonly></td>' +
                 '<td><input type="text" name="discount[]" id="discount' + i + '"  class="form-control discount" readonly></td>' +
                 '<td><input type="text" name="amount[]" id="amount' + i + '"  class="form-control amount" readonly></td>' +
@@ -238,6 +241,7 @@
 </head>
 <body class="container"><br>
     <a href="/"><button class="btn btn-success">Home page</button></a>
+    <a href="{{route('productStock.view')}}"><button  class="btn btn-primary">Stock</button></a>
 
         <form class="mb-3"  action="{{route('saveData')}}" method="POST">
         @csrf
@@ -266,6 +270,7 @@
                             <th>Product Code</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Available Stock</th>
                             <th>Free quantity</th>
                             <th>Discount (Rs.)</th>
                             <th>Amount</th>

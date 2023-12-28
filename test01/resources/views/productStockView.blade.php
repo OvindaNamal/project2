@@ -7,6 +7,8 @@
 <body class="container"><br>
     <a href="/"><button  class="btn btn-primary">Home</button></a>
     <a href="/productReg"><button class="btn btn-success">Add Product</button></a>
+    <a href="/placingOrder"><button class="btn btn-success">Placing Order Page</button></a>
+
     <h2>Stock View</h2>
 
     <table class="table table-bordered">
