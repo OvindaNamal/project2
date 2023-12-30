@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="productPrice">Stock Balance:</label>
-            <input type="number" class="form-control" id="stock" name="stock" value="{{ old('stock', $task->stock) }}" readonly>
+            <input type="number" class="form-control" id="stock" name="stock" value="{{ old('available_stock', $task->available_stock) }}" readonly>
         </div>
 
         <div class="form-group">
