@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        /* Your internal CSS goes here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 30px;
+        }
 
+    </style>
 
 <script>
     $(document).ready(function () {
@@ -51,6 +59,22 @@
             row.find('.product-price').val(selectedPrice);
             row.find('.available-stock').val(availableStock);
             
+            // Display a message if available stock is 0
+            var stockMessage = '';
+            var style = '';
+
+            if (availableStock === 0) {
+                stockMessage = 'No Stock';
+                style = 'color: red;';
+            } else if (availableStock < 60) {
+                stockMessage = '(Low) ' + availableStock;
+                style = 'color: red;';
+            } else if (availableStock > 60) {
+                stockMessage = '' + availableStock;
+                style = 'color: green;';
+            }
+
+            row.find('.stock-message').text(stockMessage).attr('style', style);
 
             // Trigger the input event to calculate the amount and update net_Amount
             row.find('.quantity').trigger('input');
@@ -133,7 +157,8 @@
                 '<td><input type="text" name="product_code[]" id="product_code' + i + '" class="form-control product-code" readonly></td>' +
                 '<td><input type="text" name="product_price[]" id="product_price' + i + '"  class="form-control product-price" readonly></td>' +
                 '<td><input type="text" name="quantity[]" id="quantity' + i + '"  class="form-control quantity"></td>' +
-                '<td><input type="text" name="available_stock[]" id="available_stock' + i + '"  class="form-control available-stock" readonly></td>' +
+                // '<td><input type="text" name="available_stock[]" id="available_stock' + i + '"  class="form-control available-stock" readonly></td>' +
+                '<td class="stock-message"></td>'+
                 '<td><input type="text" name="free[]" id="free' + i + '"  class="form-control free" readonly></td>' +
                 '<td><input type="text" name="discount[]" id="discount' + i + '"  class="form-control discount" readonly></td>' +
                 '<td><input type="text" name="amount[]" id="amount' + i + '"  class="form-control amount" readonly></td>' +
@@ -239,7 +264,7 @@
 
 
 </head>
-<body class="container"><br>
+<body><br>
     <a href="/"><button class="btn btn-success">Home page</button></a>
     <a href="{{route('productStock.view')}}"><button  class="btn btn-primary">Stock</button></a>
 
