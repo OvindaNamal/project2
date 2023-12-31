@@ -19,6 +19,10 @@
             padding: 30px;
         }
 
+        .form-width{
+            width:200px;
+        }
+
     </style>
 
 <script>
@@ -66,10 +70,10 @@
             if (availableStock === 0) {
                 stockMessage = 'No Stock';
                 style = 'color: red;';
-            } else if (availableStock < 60) {
+            } else if (availableStock < 100) {
                 stockMessage = '(Low) ' + availableStock;
                 style = 'color: red;';
-            } else if (availableStock > 60) {
+            } else if (availableStock > 100) {
                 stockMessage = '' + availableStock;
                 style = 'color: green;';
             }
@@ -145,7 +149,7 @@
             let html =
                 '<tr>' +
                 '<td>' +
-                '<select name="pu_product[]" id="pu_product' + i + '" class="form-control product-select" placeholder="Select Product">' +
+                '<select name="pu_product[]" id="pu_product' + i + '" class="form-control form-width product-select" placeholder="Select Product">' +
                 'optgroup><label>Select Purchase Product</label>' +
                 '<option value="" selected disabled hidden>Select Product</option>' +
                 '@foreach ($products as $product)' +
